@@ -1,0 +1,26 @@
+caret notes
+
+//implents CaretListener to class then override the method caretUpdate(CaretEvent obj){}
+
+eg:-
+
+
+@Override
+	public void caretUpdate(CaretEvent caretEvent) {
+		try{
+			int offset = caretEvent.getMark();
+			int line = obj.getLineOfOffset(offset);
+			statusbarObj.LineStatusUpdate(line+1, offset - obj.getLineStartOffset(line));  //(row,colums)
+
+		}catch(Exception error){
+			System.out.println(error);
+
+		}
+		
+	}
+
+
+
+//caret color
+.setCaretColor(Color.BLACK);
+

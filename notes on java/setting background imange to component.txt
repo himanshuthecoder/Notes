@@ -1,0 +1,3 @@
+Icon img = new ImageIcon(getClass().getResource("logo.png")); 
+		JLabel logo = new JLabel(img);
+		

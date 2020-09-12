@@ -1,0 +1,214 @@
+/*
+=================================================================================================
+//Related Doc Urls:
+
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/text/JTextComponent.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/JMenu.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/JMenuItem.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/AbstractButton.html#setMnemonic(char)
+
+=================================================================================================
+*/
+
+============================================================================================
+// import modules
+import javax.swing.*;
+import java.awt.event.*;
+import java .awt.*;
+=============================================================================================
+
+
+==============================================================================================
+
+
+for creating menu
+	JMenu menu_name = new JMenu("menu_name");
+	ex-JMenu file=new JMenu("File");
+
+**********************************************************************************************
+
+for creating menu item 
+	
+	JMenuItem menu_item_name = new JMenu("Menu_Item_Name");
+	menu_name.add(menu_item_name);    //adding menuitem in menu
+
+	ex- JMenuItem new = JMenuItem("New");
+		file.add(new); 
+
+**********************************************************************************************
+
+for adding seprator between menu items
+	
+	menu_name.addSeperator();
+	ex- file.add(new);
+		file.add(open);
+		file.addSeperator();
+		file.add(exit);
+
+**********************************************************************************************
+checkbox menu
+menu_view_statusbar = new JCheckBoxMenuItem("Status Bar", true);
+	
+	first implement itemListener to class then override method itemStateChanged(ItemEvent e) for adding listener to checkbox menu item
+	
+		//adding action to checkbox menu like status bar,linenumber,cursor
+			public void itemStateChanged(ItemEvent e) 
+			{
+				
+				if (e.getSource()==menu.menu_view_statusbar) {
+					System.out.println("[+] Status Bar State Changed");
+
+					if(e.getStateChange()==1)
+					{
+						statusbarObj.setVisible(true);
+					}
+					else{ 
+						statusbarObj.setVisible(false);
+					}
+				}
+
+**********************************************************************************************
+//adding sub menus to menu item
+	for adding sub menu to menu item you need to declare the menuitem with only menu and then first add sub menuitem to menu and then add menu to menu items
+
+		public JMenu menu_view_theme;
+		public JMenuItem theme_0;
+		public JMenuItem theme_a;
+		public JMenuItem theme_b;
+		public JMenuItem theme_c;
+		public JMenuItem theme_d;
+		public JMenuItem theme_e;
+		public JMenuItem theme_f;
+		public JMenuItem theme_g;
+		public JMenuItem theme_h;
+		
+
+
+		menu_view_theme.add(theme_0);
+		menu_view_theme.add(theme_a);
+		menu_view_theme.add(theme_b);
+		menu_view_theme.add(theme_c);
+		menu_view_theme.add(theme_d);
+		menu_view_theme.add(theme_e);
+		menu_view_theme.add(theme_f);
+		menu_view_theme.add(theme_g);
+		menu_view_theme.add(theme_h);
+		menu_view.add(menu_view_theme);
+
+		In above example menu_view_theme is menu items of menu_view menu in menu bar
+		and theme_0,theme_a....etc are sub menu of menu_view_theme 
+
+**********************************************************************************************
+
+//to increase the size of menu item box
+	
+	menuitem.setPreferredSize(new Dimension(widht,height));
+
+**********************************************************************************************
+
+//adding shortcut keys
+	
+		menuitem.setAccelerator(KeyStroke.getKeyStroke('charcter',ActionEvent.CTRL_MASK));
+		menuitem.setAccelerator(KeyStroke.getKeyStroke('character',ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+		
+		form key number
+		menuitem.setAccelerator(KeyStroke.getKeyStroke(keynumber,ActionEvent.CTRL_MASK));
+		from function keys
+		menuitem.setAccelerator(KeyStroke.getKeyStroke(fucntionkeynumber, 0));
+	
+	example:-
+		menuitem.setAccelerator(KeyStroke.getKeyStroke('Z',ActionEvent.CTRL_MASK));
+		menuitem.setAccelerator(KeyStroke.getKeyStroke('Z',ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+		menuitem.setAccelerator(KeyStroke.getKeyStroke(109,ActionEvent.CTRL_MASK));   //109 = '+''
+		menuitem.setAccelerator(KeyStroke.getKeyStroke(121, 0)); 			//121 = f2
+
+**********************************************************************************************
+
+//adding menemonic to menu of menu bar
+
+	//add Mnemonic to menu (used with alt key)
+		menuname.setMnemonic('F');
+		menuname.setMnemonic('E');
+		menuname.setMnemonic('M');
+		menuname.setMnemonic('V');
+		menuname.setMnemonic('H');
+==========================================================================================================================
+
+//For Creating MenuBar in java we need to extend JMenuBar class then create menus and sub menu then add menus to bar 
+
+
+
+//example :-
+
+class menubar extends JMenuBar
+{
+	//creating menus
+	JMenu file=new JMenu("File");
+	JMenu view = new JMenu("view");
+	JMenu edit = new JMenu("edit");
+	
+	//creating items of menu
+
+		// menu file items
+		public JMenuItem file_new = new JMenuItem("New");
+		public JMenuItem file_open= new JMenuItem("Open");
+		public JMenuItem file_save = new JMenuItem("Save");
+		public JMenuItem file_exit= new JMenuItem("Exit");
+
+
+		// menu edit
+		public JMenuItem edit_undo = new JMenuItem("Undo");
+		public JMenuItem edit_redo = new JMenuItem("Redo");
+		public JMenuItem edit_cut = new JMenuItem("Cut");
+
+
+		// menu view
+		public JMenuItem view_theme = new JMenuItem("Theme");
+		public JMenuItem view_font = new JMenuItem("Font");
+
+	//after creating menu item add them to menus
+
+			
+			
+		//running constructor for creating or adding menu to bar
+	
+		//constructor
+		menubar(){
+
+			//menu file
+			file.add(file_open );
+			file.add(file_new);
+			file.addSeparator();
+			file.add(file_save);
+			file.addSeparator();
+			file.add(file_exit);
+		
+
+			// menu edit
+			edit.add(edit_undo);
+			edit.add(edit_redo);
+			edit.addSeparator();
+			edit.add(edit_cut);
+			
+			// menu view
+			view.add(view_theme);
+			view.add(view_font);
+			
+			////now we have have created menus and menu item now time to add menus on menubar
+			add(file);
+			add(edit);
+			add(view);
+		}
+	public static void main(String args[])	
+	{
+		JFrame f= new JFrame("demo menu bar");
+		menubar obj=new menubar();
+		f.setVisible(true);
+		f.setSize(500,400);
+		f.add(obj);
+		f.setJMenuBar(obj);   //set menubar to frame
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}	
+}

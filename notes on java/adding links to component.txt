@@ -1,0 +1,39 @@
+//adding links to component
+
+i//module
+		import java.net.URI;
+
+
+eg:-
+
+if (e.getSource()==menu.menu_help_topic){
+			if (debug) {
+				System.out.println("[-] help topic");
+
+			}
+				if (Desktop.isDesktopSupported()) 
+				{
+				  try {
+						Desktop.getDesktop().browse(new URI("https://www.blaregroup.com/coderail-text-editor/"));
+				  }
+				  catch (Exception m) {}
+				} 
+		}
+
+					or
+
+JButton click=new JButton("click");
+click.addActionListener( new ActionListener()
+{
+	public void actionPerformed(ActionEvent e)
+	{
+		if (Desktop.isDesktopSupported()) 
+				{
+				  try {
+						Desktop.getDesktop().browse(new URI("https://www.blaregroup.com/coderail-text-editor/"));
+				  }
+				  catch (Exception m) {}
+				} 
+	}
+	
+})

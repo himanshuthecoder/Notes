@@ -1,0 +1,97 @@
+comments:-
+	# any text
+
+printing line:-
+	echo any text
+
+variables:-
+	varname = "value"
+	* variable in output time:-
+	echo "My name is $NAME"
+	echo "My name is ${NAME}"
+
+Taking input:-
+	read varname
+	eg:- read NAME
+
+Writing to file:-
+	syntx:- echo "text" << location
+	echo "hello world" << "world.txt"
+
+
+IF condition:-
+1)	if ["$NAME" == "BRAD"]
+	then
+	echo "your name is brad"
+	fi
+2)	if ["$NAME" == "BRAD"]
+	then
+		echo "your name is brad"
+	else
+		echo "your name is not brad"
+	fi	
+	
+3)	if ["$NAME" == "BRAD"]
+	then
+	elseif ["$NAME" == "JACK"]
+	then
+		echo "your name is jack"
+	fi
+
+switch case:-
+	case "$answer" in
+	[yY] | [yY][eE][sS]
+		echo "dsa"
+	;;
+	[nN] | [nN][oO][tT]
+		echo "nnuj"
+	;;
+	
+	*)
+		eacho "jlj"
+	;;
+
+	esac
+
+Function:-
+	function demo()
+	{
+		echo "hello"
+	}
+	
+
+//calling 	demo
+
+Function with prams:-
+	//parameter passed to function is like 1,2,3.. so on means 1 parmeter passed is treated as 1 2nd parameter passed is treated as 2 and so on.
+
+	function demo()
+	{
+		echo "hello i'm $1 and I'm $2"
+	}
+
+	demo "himanshu" "pooja"
+
+For loop:-
+	
+	NAMES = "BRAD HIMANSHU POOJA"
+	for NAMES in $NAMES
+	do 	
+		echo "hello $NAMES"
+	done
+
+	2) for ((i=0;i<=40;i++))
+		do
+		--
+		done
+
+Renaming File using for loop:-
+	
+	FILE = $(ls *.txt)
+	NEW = "new"
+ 	for FILE in $FILE	
+	do
+		echo "Renaming $FILE to new-$FILE"
+		mv $FILE $NEW-$FILE
+	done
+

@@ -1,0 +1,49 @@
+import javax.swing.Timer;	 //used for timer or hold the program
+
+
+//Timer obj=new Timer(millisecond,action listener class)
+**********************************************************************
+Timer obj=new Timer(1000,new ActionListener()
+		{
+			public void actionPerfomed(ActionEvent e)
+			{
+				body
+			}
+
+		}
+
+);
+************************************************************************
+----------------------second method--------------------------------
+******************************************************************
+Timer obj=new Timer(1000,new class_name());
+
+public class_name implements ActionListener
+{
+	public void actionPerformed(ActionEvent e)
+	{
+		body
+	}
+}
+*************************************************************************
+
+
+****************example**********************************
+//creating timer
+		countdown=new Timer(1000,new ActionListener()
+			{	int st=6;  //timer start no.
+				public void actionPerformed(ActionEvent e)
+				{
+					st--;
+					if(st>=0){timer_value.setText(Integer.toString(st));}
+					else
+					{	countdown.stop();
+						int a=JOptionPane.showConfirmDialog(null,"Time Over \n Your Score = "+(current_score-1)+"\n Do you want to play again");
+						if(a==JOptionPane.YES_OPTION){restart();first_display();}
+						else { exit_display();}
+					}
+				}
+			});
+
+countdown.start();    //starting timer
+countdown.stop();     //stoping timer

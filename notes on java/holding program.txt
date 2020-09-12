@@ -1,0 +1,11 @@
+/*****  it will hold the program for some time **************/
+
+try
+{
+	Thread.sleep(70);	//for holding program
+	
+}
+catch(Exception e)
+{
+
+}

@@ -1,0 +1,216 @@
+========================================
+Things To know:-
+--------------------
+php artisan serve - To serve the application
+php artisan key::generate - To generate key 
+php artisan tinker - To open Database
+---
+When working with database model if you want to use modal functions in your controller then  you must have to add below commands:
+    use App\modelName
+        eg:- use App\Post;
+    After declaring model name you can acces its function and fields to you controller using commands that you used in tinker to access or manupulate data.
+    
+---
+If you want to use Sql query or any other query language simply add below line controller.
+    use DB; //this will let you query data according to your query language
+        eg:- DB::select('select * from posts');
+
+** If you want to route all function of controller Simply type:-
+    Route::resource('modelName','ControllerName'); 
+
+----
+Adding  paginates in template.
+    Add below line in controller.
+        Post::all()->paginate(1);
+    Add below line in template.
+        {{$post->links()}}
+    
+================================================
+Steps to setup Laravel:-
+
+Pre setup:-
+------------
+1) install php
+2) install mysql
+3) install apache
+4) install composer
+
+
+=====================================================================
+Setup laravel:-
+-----------------
+once you installed composer run the below commands
+	- composer global require laravel/installer
+
+======================================================================
+To run laravel:-
+------------------
+	Enter command :- php artisan serve
+---Above command will provide you address copy that and paste it in 
+your browser.
+
+If you are getting any error check web.
+Simple troubleshoot are:- Steps:
+	1)cp .env.example .env
+	2)php artisan key:generate
+	3) Full path to database in .env file
+	
+Hope this will work for you.
+
+======================================================================
+
+Creating new Project in Laravel:-
+======================================
+ - laravel new 'project_Name'
+	eg:- laravel new billapp
+
+
+Routes in Laravel:-
+======================================
+
+    Syntax:-
+    Route::get('url',function(){
+        return something;
+    });
+    
+    Simple routings:- 
+    ------------------
+        *use can use post,get,delete
+        eg:- Route::get('/about',funtion(){
+            //return ('About Page');    //for simple HTML
+            //return view('pages.about');   //For sending webpages
+        });
+
+        Dynamic Route:-
+        eg 1:- Route::get('/users/{id}',function($id){
+                return 'This is user '.$id;
+        });
+        eg 2:- Route::get('/users/{id}/{name}',funtion($id,$name){
+                return 'this is user'.$name.'with user id'.$id;
+        });
+    
+    Routes using controllers:-
+    ----------------------------
+       Syntax:-
+        Route::get('url','ControllerName@functionname');
+        eg:- Route::get('/','PagesController@index');
+            Route::get('/about','PagesController@about');
+            Route::get('/service','PagesController@about');
+            
+    
+
+        
+Controller in Laravel;- 
+========================================
+     command to make controller in terminal
+        - php artisan make:controller ControllerName
+            eg:- php artisan make:controller AboutController
+            
+        * Controller are stored in App/Http/controllers
+        * In Controller file you can make function to return view or add codes to handle the request.    
+            eg:- To make function
+                    public function funname(){
+                        return 'fdfa';  //simple html return
+                        return view('pages.about'); //view return
+                    }
+        Passing parameter to blade template
+        -------------------------------------
+         Two method to pass parameter-
+            1) return view('pages.index',compact('title'));
+            2) return view('pages.index')->with('title',$title);
+         There are basically two ways to use passed parameter in blade template:-
+           1) {{$title}}
+           2) <?php echo $title; ?>
+             
+                
+                    
+Blade Template in Laravel:-
+=======================================
+     - @yield('name') - for yield content from other pages.
+        eg:- @yield('content')
+     
+     -@extends('filename')
+        eg:- @extends('layouts.app') - extending the app template from layaout folder.
+            After extending layout not add content to sections of template using:- 
+            
+            @section('SectionName')
+                //your code 
+            @endsection
+     
+     - @include('filenameWithPath') - used to add another blade template into currrent blade template.
+        eg:- @include('com.navbar') //navbar template in com folder.
+            This will append the navbar content to the current template that you are using.
+    
+     - using If else in blade Template:-
+        @if('condition')
+        
+        @else
+        
+        @endif
+        
+     - using For Loops in Blade Template:-
+
+        -foreach loop
+            @foreach(variable as loopvaiable)
+             @endforeach
+             
+
+Database and models in Laravel:-
+==============================================
+
+    - First Create Modal:
+        Syntac: php artisan make:modelName -m
+            php artisan make:model Post -m
+        
+        * This command will create Post.php Model and create_post table.php for migration.
+        
+    - After Creatring model you can edit create_post_table.php file. In this file you will find controls to add fields in database table and many more.
+        eg:- In this file you may found this code:
+                public function up()
+                {
+                    Schema::create('post',function(Blueprint $table){
+                        $table->increments('id');
+                        $table->timestamps();
+                    });
+                }
+                
+                So you will find basically same code as shown above this code will create post table in database with fields increments and timestamps.
+                If you want to create more fields so you can edit this section.
+                For adding new field you can do:-
+                    Syntac:$table->datatype('fieldName');
+                        eg:- $table->string('name');
+                        
+                    
+    - After creating editing files. Run below command to make changes in database.
+        : php artisan migrate -this will create tables in database or referesh them.
+        
+
+Thinker commands:-
+=======================
+1) ::count() - will provide no of rows in table
+        Syntax:: App\TableName::count()
+                eg:- App\post::count()
+    ::find(var) - to find data in tables.
+            eg;- App\post::find('2');
+    ::all() - Will show all data in table.
+            eg:- App\post::all();
+    ::orderBy('coulmnName','desc|asc')->get(); - will show all data in ascending or desending order of coulmn.
+            eg:- App\post::orderBy('title','desc')->get(); 
+    ::where('columnname','contentToMatch')->get(); - will return data which is matched by where clause.
+            eg:- App\post::where('title','PostOne')->get();
+            
+        
+    
+2) you can create vairable in tinker for easy acces to different tables.
+    Syntax:: $varName = new App\tableName();
+        eg:-  $post = new App\Post();
+
+3) Inserting  data to table:-
+        Syntax::$varName->coulmnName = data;
+            eg:: $post->title = 'Post One';
+                $post->body = 'PostBody';
+    After Inserting Data Save the database using below command:-
+        $post->save();
+        
+                
+        

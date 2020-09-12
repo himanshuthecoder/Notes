@@ -1,0 +1,59 @@
+//Adding hover effect on button
+
+---------------first method-----------------------
+button_name.addMouseListener(new MouseAdapter()
+		{
+
+			public void mouseEntered(MouseEvent evt)
+				{
+						body
+				}
+				public void mouseExited(MouseEvent evt)
+				{
+						body
+				}		  
+
+		}
+
+);
+
+
+
+----------------second method-----------------------		
+*******************************************************
+button_name.addMouseListener(new class_name());
+
+private class class_name  extends MouseAdapter
+	{
+		
+		public void mouseEntered(MouseEvent evt)
+		{
+				body
+		}
+		public void mouseExited(MouseEvent evt)
+		{
+				body
+		}		   
+	}
+
+
+
+
+
+---------------example---------------------------
+/*   this class will handle the hover on buttons */
+
+start_button.addMouseListener(new HoverEffect);
+
+	private class HoverEffect  extends MouseAdapter
+	{
+		
+		public void mouseEntered(MouseEvent evt)
+		{
+				start_button.setBackground(Color.red);
+		}
+		public void mouseExited(MouseEvent evt)
+		{
+				start_button.setBackground(Color.white);
+		}		   
+	}

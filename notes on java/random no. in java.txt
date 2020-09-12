@@ -1,0 +1,6 @@
+/*  how to take random no. in java********/
+
+
+import java.util.Random;     //used to take random value
+		Random rand=new Random();
+		int j=rand.nextInt(50);

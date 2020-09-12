@@ -1,0 +1,35 @@
+
+Reference Docs
+			https://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html
+			https://stackoverflow.com/questions/6555040/multiple-input-in-joptionpane-showinputdialog/6555051
+			https://docs.oracle.com/javase/7/docs/api/javax/swing/JDialog.html
+			https://tips4java.wordpress.com/2008/10/29/line-painter/
+			https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html
+			https://docs.oracle.com/javase/7/docs/api/java/lang/String.html
+			https://www.daniweb.com/programming/software-development/threads/417646/find-a-word-in-jtextarea-and-higlight-it
+
+
+
+// import modules
+import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+class dialog extends JDialog
+{
+	dialog()
+	{
+		setTitle("demo");
+		setSize(300,400);
+		setVisible(true);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	}
+
+	public static void main(String args[])
+	{
+		dialog obj=new dialog();
+
+	}
+}

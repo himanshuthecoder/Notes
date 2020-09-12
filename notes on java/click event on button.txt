@@ -1,0 +1,37 @@
+//adding action on button
+		
+-----------------first method---------------------
+button_name.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			body
+		}
+	}
+);
+
+------------------second method------------------
+button_name.addActionListener(new class_name());
+
+public class_name implements ActionListener
+{
+	
+	public void actionPerformed(ActionEvent e)
+	{
+
+	}
+}
+
+
+
+
+
+-------------example-----------------------------
+		exit_button.addActionListener(new ActionListener(){
+				
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+				
+		});

@@ -1,0 +1,5 @@
+jar cvf jarfile.jar *.class anyfolder
+
+add this line in manifest .txt
+
+Main-Class: mainclassname

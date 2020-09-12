@@ -1,0 +1,78 @@
+server command :- python -m SimpleHTTPServer 8000
+============================================================================
+Command to create gifs:-
+	- check that imagemagic app is required
+	- convert -delay 50 -loop 0 *.png  animatedGIF.gif
+
+=============================================================================
+Command to install tar.gz pakages:-
+	- First unzip the Tar file using 
+		tar -xvf packagename.taz.gz
+	- Enter in the directory them run command
+		makepkg
+	- After running above command a new pakage will be create then install that package.
+		sudo pacman -U pacakagenaem.pkg.tar.gz 
+=============================================================================
+Command to remove db.lock 
+- To remove the lock just remove the file db.lck from /var/lib/pacman/db.lck
+=============================================================================
+Command to clone all repo at once:-
+	curl "https://api.github.com/users/himanshuthecoder/repos?page=$PAGE&per_page=100" | grep -e 'git_url*' |cut -d \" -f 4 | xargs -L1 git clone
+=============================================
+Location of server in manjaro:- 
+	- /srv/http
+=============================================
+command to remove directory
+	rm -rf directoryname
+============================================================
+command to make shortcut using alias:-
+	steps:
+	1) open .bashrc
+	2) ADD alias sortcut_name='Command';
+	3) Save File
+	4) run source .bashProfile.sh
+============================================================
+
+command to change username in terminal :-
+	it is used to change name temprorily to use termial 
+	PS1="surajsinghbisht@c_programs : "
+	use pwd to see current directory
+
+============================================================
+Commands for Manjaro/arch linux:-
+------------------------------------
+
+## command to update/install/remove packages :-
+	sudo pacman -Syu 		\\update the packages
+	sudo pacman -Ss package_name  	\\searching package
+	sudo pacman -S
+	sudo pacman -Rs package_name    \\removing packages
+
+##command to start sql:-
+	sudo systemctl start mysqld
+	sudo systemctl status mysqld
+	sudo systemctl stop mysqld
+
+## command to start apache server:-
+	sudo systemctl start apache
+
+## Cleaning and fastening linux:-
+	sudo paccache -ruk0    //it will clear the cache that is not used
+===============================================================
+command to make script run globlly
+
+	Steps:-	1) create a script file and make it executable
+		2) now go to home directory and create new directory according to your choice 
+			for eg:- globalscript
+				command:- mkdir globalscript
+			* This folder will keep all your scripted file and execute from anywhere
+		3) now create ./bash_profile in home directory or if already present then edit 
+			in this file type 
+			export PATH=$PATH:path/to/your/directory //that you created in step2
+			eg:- export PATH=$PATH:/home/himanshucool/GlobalScripts/
+			now save the file 
+		4) now on terminal type:- $ source ~/.bash_profile 
+			it will referesh the file 
+		5) now you can use your script from anywhere
+
+================================================================

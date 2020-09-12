@@ -1,0 +1,22 @@
+Creating Project in QT:-
+---------------------------
+1) First Make Directory for your project:-
+	eg:- mkdir HelloWorld
+2) Now create a Cpp file in your directory and write some code.
+	eg:- main.cpp
+3) Now make the QT project file using qmake command
+	qmake -project
+    * This command will create a file named HelloWorld.pro.
+  This project file is the basic skeleton file for Qt projects and it can be edited for complex purposes.
+4) Now edit the .pro file that you created in step 3 with your configurations like including 
+   source files and which QT tool are you going to use etc.
+	eg:- QT += gui widget  [this command means you are importing gui and widget module of QT]
+	
+5) Now run the command the $make this will create a an executable program in your directory.
+6) Run the executable file using ./filename 
+
+Now its done.
+------------------------------------------------------------------------------------------
+
+
+

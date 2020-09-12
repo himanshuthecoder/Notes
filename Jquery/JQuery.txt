@@ -1,0 +1,140 @@
+
+
+OBTAINING JQUERY
+==========================================
+Getting jQuery is extremely easy—all you have to do is go to www.jquery.com and click the
+Download jQuery link. You’ll see two options for downloading either the 1.x version or the 2.x
+version:
+
+	➤ An uncompressed development version
+			To load the jQuery library in your web application, you’ll need to include a
+			<script> tag in the head element of your web page. The <script> tag should
+			point to the jQuery library file that you downloaded:
+				<script src="jquery-3.2.1.min.js"></script>
+
+
+	➤ A compressed production version
+		The jQuery project runs its own CDN to host the latest jQuery library file and
+		provides the <script> tag formats required for each of the different library file
+		options. At the time of this writing, they host that at https://code.jquery.com .
+		Here’s the current <script> tag to use to load the jQuery library from the jQuery
+		CDN website:
+
+			<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4
+			gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+		The integrity and crossorigin attributes are for the Subresource Integrity (SRI)
+		feature, which helps the browser ensure the downloaded file hasn’t been tam-
+		pered with. This is a nice feature to add to ensure your site visitors aren’t using a
+		hacked library file.
+
+The uncompressed development version is recommended for use while you are developing. This
+version can facilitate doing back traces with web developer tools in any of the major browsers. You
+can walk through the JavaScript chain of execution and see what code is executing in nice, human-
+readable code. The compressed production version is recommended for use on production websites
+where size is a huge consideration; the fi le is compressed to remove all the extra whitespace so that it
+downloads quickly.
+*************************************************************************************************************
+*************************************************************************************************************
+
+======================================================================
+=					Basic things									 =
+======================================================================
+	* Use Dollor($) or jQuery to use jQuery function in js
+
+Selecting Element from HTML file
+	-> $(element).callTOAnyJQueryFunction  [ element - #id, .class , tag , tag#id , tag.class]
+	
+**********************************************************************
+**********************************************************************
+======================================================================
+=	First Hello World JQuery program								 =
+======================================================================
+
+			HTML File
+--------------------------------------
+	<!DOCTYPE HTML>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type"	content="application/xhtml+xml; charset=utf-8" />
+		<meta http-equiv="content-language" content="en-us" />
+	<title>Hello, World</title>
+	<script type='text/javascript' src='../jQuery.js'></script>
+	<script type='text/javascript' src='Example 1-1.js'></script>
+	<link type='text/css' href='Example 1-1.css'rel='stylesheet' />
+	</head>
+	<body>
+	
+	</body>
+	</html>
+
+-----------------------------------------
+				JS File
+-----------------------------------------
+
+	$(document).ready(
+		function()
+		{
+			$('body').append(
+				$('<div/>')
+				.addClass('selected')
+				.attr({
+					id : 'body',
+					title : 'Welcome to jQuery'
+				})
+				.text(
+					"Hello, World!"
+				)
+			);
+		}
+	);
+
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+This is what a chained method call looks like using
+		
+		jQuery:
+		$('<div/>')
+		.addClass('selected')
+		.attr({
+		id : 'body',
+		title : 'Welcome to jQuery'
+		})
+		.text("Hello, World!");
+
+
+In the preceding example, a <div> element is created with jQuery. jQuery is contained within the
+dollar sign variable, $ , which is a JavaScript variable just one character long. This variable contains
+the entire jQuery framework and is the starting point for everything that you can do with jQuery.
+The statement $('<div/>') creates the <div> element, and then you see multiple method calls follow-
+ing that statement. .addClass('selected' ) adds the class attribute to the <div> element. Then there
+is a call to .attr() , which adds two additional attributes to the <div> element, an id attribute and
+a title attribute, and then the call to .text() fi lls the <div> element with plain text content. With
+this little snippet of code, you have four separate method calls all strung together to form a single
+expression spanning multiple lines. This brief sample of what jQuery can do results in the creation
+of a <div> element that can be inserted into the DOM that looks like this:
+	
+		<div class="selected" id="body" title="Welcome to jQuery">Hello, World</div>
+
+
+eg 1.2
+	
+	$(document).ready(
+		function()
+		{
+			$('a#examplePumpkin').click(
+				function(event)
+				{
+					event.preventDefault();
+					window.open(
+						'pumpkin.jpg',
+						'Pumpkin',
+						'scrollbars=no,width=300,height=280,resizable=yes'
+					);
+				}
+			);
+		}
+	);

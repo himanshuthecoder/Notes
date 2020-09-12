@@ -1,0 +1,179 @@
+Create database - touch database/database.sqlite
+---
+
+Setting Path in env
+DB_CONNECTION=sqlite
+DB_DATABASE=/absolute/path/to/database.sqlite
+
+---
+
+To enable foreign key constraints for SQLite connections, you should set the DB_FOREIGN_KEYS environment variable to true:
+
+DB_FOREIGN_KEYS=true
+
+---
+The DB facade provides methods for each type of query: select, update, insert, delete, and statement.
+query exmples:-
+	1) running raw sql queries
+		Format:- DB::(select('sql-query',[parameter if any]);
+		$users = DB::select('select * from users where active = ?', [1]);
+		The select method will always return an array of results.to access the values of the results:
+			$user->name;
+
+	  Using Named Bindings:-
+		Instead of using ? to represent your parameter bindings, you may execute a query using named bindings:
+		$results = DB::select('select * from users where id = :id', ['id' => 1]);
+	2) Running An Insert Statement
+		DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle']);
+	3) Running An Update Statement
+		$affected = DB::update('update users set votes = 100 where name = ?', ['John']);
+	4) Running A Delete Statement
+		$deleted = DB::delete('delete from users');
+	
+	5) DB::statement('drop table users');
+
+Database Transactions:-
+---
+You may use the transaction method on the DB facade to run a set of operations within a database transaction
+	DB::transaction(function () {
+	    DB::table('users')->update(['votes' => 1]);
+
+	    DB::table('posts')->delete();
+	});
+
+
+Query building:-
+---
+For getting all rows   =>    DB::table('users')->get();
+Getting Single Row     => DB::table('users')->where('name', 'John')->first();
+Getting value form single row => DB::table('users')->where('name', 'John')->value('email')
+Finding or getting data by id => DB::table('users')->find(3);
+
+Select:-   DB::table('users')->select('name', 'email as user_email')->get();
+
+
+
+If you would like to retrieve a Collection containing the values of a single column, you may use the pluck method
+		DB::table('roles')->pluck('title');
+
+## inserts
+---
+DB::table('users')->insert(
+    ['email' => 'john@example.com', 'votes' => 0]
+);
+
+DB::table('users')->insert([
+    ['email' => 'taylor@example.com', 'votes' => 0],
+    ['email' => 'dayle@example.com', 'votes' => 0],
+]);
+
+
+
+## Where Calause:-
+You may use the where method on a query builder instance to add where clauses to the query. The most basic call to where requires three arguments. The first argument is the name of the column. The second argument is an operator, which can be any of the database's supported operators. Finally, the third argument is the value to evaluate against the column.
+	DB::table('users')->where('votes', '=', 100)->get();
+You may use a variety of other operators when writing a where clause:
+
+$users = DB::table('users')
+                ->where('votes', '>=', 100)
+                ->get();
+
+$users = DB::table('users')
+                ->where('votes', '<>', 100)
+                ->get();
+
+$users = DB::table('users')
+                ->where('name', 'like', 'T%')
+                ->get();
+
+You may also pass an array of conditions to the where function:
+
+$users = DB::table('users')->where([
+    ['status', '=', '1'],
+    ['subscribed', '<>', '1'],
+])->get();
+
+The whereBetween method verifies that a column's value is between two values:
+
+$users = DB::table('users')
+           ->whereBetween('votes', [1, 100])
+           ->get();
+The whereNotBetween method verifies that a column's value lies outside of two values:
+
+$users = DB::table('users')
+                    ->whereNotBetween('votes', [1, 100])
+                    ->get();
+$users = DB::table('users')
+                    ->whereIn('id', [1, 2, 3])
+                    ->get();
+$users = DB::table('users')
+                    ->whereNotIn('id', [1, 2, 3])
+                    ->get();
+DB::table('users')
+                    ->whereNull('updated_at')
+                    ->get();
+DB::table('users')
+                    ->whereNotNull('updated_at')
+                    ->get();
+DB::table('users')
+                ->whereDate('created_at', '2016-12-31')
+                ->get();
+DB::table('users')
+                ->whereMonth('created_at', '12')
+                ->get();
+DB::table('users')
+                ->whereDay('created_at', '31')
+                ->get();
+
+DB::table('users')
+                ->whereDay('created_at', '31')
+                ->get();
+DB::table('users')
+                ->whereDay('created_at', '31')
+                ->get();
+
+DB::table('users')
+                ->whereYear('created_at', '2016')
+                ->get();
+
+The whereColumn method may be used to verify that two columns are equal:
+$users = DB::table('users')
+                ->whereColumn('first_name', 'last_name')
+                ->get();
+
+
+Methods in sql:-
+1) count() - DB::table('users')->count();
+2) avg() - DB::table('orders')->avg('price');
+3) max() - DB::table('orders')->max('price');
+4) 	return DB::table('orders')->where('finalized', 1)->exists();
+	return DB::table('orders')->where('finalized', 1)->doesntExist();
+5)	$orders = DB::table('orders')
+                ->whereRaw('price > IF(state = "TX", ?, 100)', [200])
+                ->get();
+6)	DB::table('orders')
+                ->select('department', DB::raw('SUM(price) as total_sales'))
+                ->groupBy('department')
+                ->havingRaw('SUM(price) > ?', [2500])
+                ->get();
+7)	 DB::table('orders')
+                ->orderByRaw('updated_at - created_at DESC')
+                ->get();
+8)	DB::table('orders')
+                ->select('city', 'state')
+                ->groupByRaw('city, state')
+                ->get();
+
+9) 	DB::table('users')
+                ->orderBy('name', 'desc')
+                ->get();
+10 ) 	$user = DB::table('users')
+                ->latest()
+                ->first();
+11)	DB::table('users')
+                ->inRandomOrder()
+                ->first();
+12)	$users = DB::table('users')->skip(10)->take(5)->get();
+
+13)	
+

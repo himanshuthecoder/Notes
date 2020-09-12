@@ -1,0 +1,7 @@
+===================================================================================
+* we can not take input string right after the int or float because nextInt() or nextFloat() etc
+takes only the input no. and leave the newline character so when we take the string input it stores only new 
+line character and skip the real content so to overcome this we need to clear the buffer 
+eg:- scannerobject.nextLine();
+	scan.nextLine();
+====================================================================================

@@ -1,0 +1,72 @@
+Useful Reference Docs
+			 https://docs.oracle.com/javase/7/docs/api/javax/swing/JTextArea.html
+			 https://docs.oracle.com/javase/7/docs/api/java/awt/Font.html
+
+
+
+//for setting font of text area
+	setFont(getFont().deriveFont(fontsize));
+			or
+	setFont( new Font("style",Font.TYPE,size))
+				TYPE=PLAIN,BOLD,ITALIC...
+				SIZE= 12,30,25...
+				STYLE= "COURIER"...
+
+//usefule mehods provided by textarea
+		USEFUL Methods
+
+			copy()
+			cut()
+			getSelectedText()
+			getSelectionEnd
+			getSelectionStart
+			getText
+			getText <-- Specific Portion
+			paste
+			replaceSelection
+			select
+			selectAll
+			setText
+			updateUI
+
+
+//for counting total line
+		obj.getLineCount();
+
+//for getting tab size
+		obj.getTabSize();
+
+//imp
+		obj.setEditable(false);						//make text are not editable if it is true then text area is editable
+		obj.setLineWrap(true);						//it will move the line to next line if width of text area is reched
+		obj.setMargin(new Insets(10,10,0,5));		//seeting margins of texts to textarea border
+		obj.setWrapStyleWord(true);					//if the whole word does fit in single line then it will move the word to next line	
+		obj.setBackground(new Color(31, 35, 64));
+		obj.setForeground(Color.WHITE);										
+
+//adding scroll bar
+	JScrollPane scroll_obj_name = new JScrollPane(obj_where_scroll_is_added); 		
+		eg- JScrollPane scrolltext = new JScrollPane(panel); 
+****we need to add scroll_obj instead of component on which we have added scroll bar
+
+//very imponent docment listener
+	
+	obj.getDocument().addDocumentListener(this);
+
+	public void changedUpdate(DocumentEvent documentEvent) {
+		// System.out.println("Document Change Update");
+		
+		};
+
+	public void removeUpdate(DocumentEvent documentEvent) {
+		// System.out.println("remove Update");
+		
+		};
+
+	public void insertUpdate(DocumentEvent documentEvent) {
+		
+
+
+		};
+
+//		

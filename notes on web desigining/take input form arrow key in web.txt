@@ -1,0 +1,24 @@
+/*****   how to take input by pressing arrow keys ******/
+
+//get user input by keyboard
+function getkey(e)
+{
+		
+    /****************************************
+            left_arrow key=37
+            up_arrow key=38
+            right_arrow key=39
+            down_arrow key=40
+    *****************************************/
+
+        var key=e.which||e.keyCode;  //getting key no.
+		switch(key)
+		{
+			case 37:move(4);break;   //left
+			case 38:move(3);break;   // up
+			case 39:move(1);break;   //right
+			case 40:move(2);break;   //down 
+		}
+}
+
+<body onkeydown="getkey(event)" ></body>

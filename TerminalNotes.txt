@@ -1,0 +1,54 @@
+Commands | 			uses
+-------------------------------------------------------------------
+ cd -	 |  changes the working directory to the previous one 
+ cd ..	 |  one directory back
+-------------------------------------------------------------------
+ exit	 | Exit The Terminal
+-----------------------------------------------------------------
+ free	 | To know ram usage
+-----------------------------------------------------------------
+ date 	 | To know the date
+-----------------------------------------------------------------
+ cal 	 | To print calender
+-----------------------------------------------------------------
+ pwd	 |  Print working Directory
+-----------------------------------------------------------------
+ cp file1 file2 | used for copy the files eg:- $cp file1 file2 , $cp file1 /home/desktop, $cp file1 file2 /home/desktop 	
+------------------------------------------------------------------------------------------------------------------------------
+ mv 	| same as cp
+------------------------------------------------------------------------------------------------------------------------------
+ rm 	| used to remove file
+ rm -rf | used to remove directory
+------------------------------------------------------------------------------------------------------------------------------
+ mkdir directory ... | create directory eg:- mkdir dir1 #create dir1 directory / # mkdir dir1 dir2 - will create two directories
+-------------------------------------------------------------------------------------------------------------------------------
+ ..	 |  move to one direcory back  eg:- [user@user Desktop]$ ../Download 	#This .. is used to look in parent directory
+------------------------------------------------------------------------------------------------------------------------------
+ ls	 |  List Files
+ ls -a   |  List all type of files hidden or non hidden
+ ls -l 	 |  List the files in the working directory in long format
+ ls -la  |  List all files ( which are normally hidden)  in long format
+ ls -lt  |  List in long format sorted to recent modification
+ ls -lt --reverse | sorted in reverse order 
+--------------------------------------------------------------------------
+ less    | To view content of a file 
+	-------------------------------      
+	| COMMANDS TO USE IN LESS VIEW |	
+	--------------------------------
+  G		| Go to the end of the text file
+ 1G		| Go to the beginning of the text file
+ /characters	| Search forward in the text file for an occurrence of the specified characters
+ n		| Repeat the previous search
+ h		| Display a complete list less commands and options
+ q		| Quit
+---------------------------------------------------------------------------
+	Wild card Selection Commands to use with cp,mv,rm 
+ *		| All filenames
+ g*		| All filenames that begin with the character "g"
+ b*.txt 	| All filenames that begin with the character "b" and end with the characters ".txt"
+ Data???	| Any filename that begins with the characters "Data" followed by exactly 3 more characters
+ [abc]*		| Any filename that begins with "a" or "b" or "c" followed by any other characters
+ [[:upper:]]*	| Any filename that begins with an uppercase letter. This is an example of a character class.
+BACKUP.[[:digit:]][[:digit:]]  | Another example of character classes. This pattern matches any filename that begins with the characters "BACKUP." followed by exactly two numerals.
+ *[![:lower:]]	| Any filename that does not end with a lowercase letter.
+-----------------------------------------------------------------------------------

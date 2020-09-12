@@ -1,0 +1,64 @@
+Enable viewing markdown file in Firefox:-
+--------------------------------------------
+Download the extension - https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer-chrome/
+
+On Linux, you'll need to create a new MIME type here:
+
+	~/.local/share/mime/packages/text-markdown.xml
+
+Add below codes in text-markdown.xml file
+----
+	<?xml version="1.0"?>
+	<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+	  <mime-type type="text/plain">
+	    <glob pattern="*.md"/>
+	    <glob pattern="*.mkd"/>
+	    <glob pattern="*.markdown"/>
+	  </mime-type>
+	</mime-info>
+----
+
+Then run:
+
+update-mime-database ~/.local/share/mime
+
+====================================================================================
+Adding background image to firefox:-
+-------------------------------------------------
+In Firefox, We can create a CSS file and tell Firefox to load that file when it starts.
+To do so, follow these steps:
+ - Go to about:support in the address bar. 
+	View the section "Application Basics" ➔ Profile Directory (or "Profile Folder" on MacOS) ➔ click the button "Open Directory" (or "Show in Finder" on MacOS): 
+
+It should open your Firefox profile directory, which is usually in your $HOME directory.
+-  Create a directory called chrome inside the opened directory, if it's not already there.
+-  Go to the chrome directory and (a) create a directory called img and (b) create a file called userContent.css. 
+	Move your image to the img directory. Open userContent.css in any text editor and paste the following code:
+********************
+	@-moz-document url(about:home), url(about:newtab), url(about:privatebrowsing) {
+	    .click-target-container *, .top-sites-list * {
+	        color: #fff !important ;
+	        text-shadow: 2px 2px 2px #222 !important ;
+	    }
+
+		body::before {
+		content: "" ;
+		z-index: -1 ;
+		position: fixed ;
+		top: 0 ;
+		left: 0 ;
+		background: #f9a no-repeat url(img/cherry-blossom-1260646.jpg) center ;
+		background-size: cover ;
+		width: 100vw ;
+		height: 100vh ;
+		}
+	}
+***********************
+Don't forget to change the file name in url(img/cherry-blossom-1260646.jpg) to your preferred image.
+Save the file and quit the editor.
+
+-  Go to the url about:config, accept the risk (we will not really do anything harmful here, nothing to worry about), and in the Search Bar,
+    paste toolkit.legacyUserProfileCustomizations.stylesheets, and set the value to true. 
+    This tells Firefox to load the CSS file at startup.
+
+============================================================================================================    

@@ -1,0 +1,181 @@
+Referece :- https://gist.github.com/bradtraversy/c831baaad44343cc945e76c2e30927b3
+			https://youtu.be/9ylj9NR0Lcg 
+=====================================================================
+Setting mysql at first after installation:-
+1) sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+2) sudo mysql_secure_installation
+
+=====================================================================
+starting mysql:-
+	
+	mysql -u 'username' -p (hit enter)
+	eg:- mysql -u himanshu -p
+Clearing msql screen:- 
+	ctrl+l
+
+Common data types in SQL:-
+
+	1. Numberic - INT , TINYINT , BIGINT , FLOAT
+	2. String - VARCHAR(255) , TEXT(65000) , CHAR
+	3. Date - DATE, DATETIME , TIMESTAMP
+	4. Others -  BINARY , JSON 
+
+Creating user for new DataBase:-
+	CREATE USER 'name'@'localhost' IDENTIFIED BY 'PASSWORD';
+
+View all user in database:-
+	SELECT user,host FROM mysql.user;
+
+Granting privileges to user :-
+	GRANT ALL PRIVILEGES ON *.f*  TO 'USER'@'LOCALHOST';
+
+View Granted privileges:-
+	SHOW GRANTS FOR 'USER'@'LOCALHOST';
+
+Choosing user in mysql:-
+	mysql -u username -p
+	login in as a root user :- mysql -u root -p
+
+Creating Database :-
+	CREATE DATABASE database_name;
+
+View Database :-
+	SHOW DATABASES;
+Deleting Database :- 
+	DROP DATABASE database_name;
+
+Choosing One Database To Use From Available Database:-
+	USE database_name;
+
+Creating Table:-
+	CREATE TABLE table_name(
+
+	);	
+				     
+	ex:- 		   		|---> Tabele Name  
+		CREATE TABLE user(
+		id INT AUTO_INCREMENT,	   -------
+		first_name 	 VARCHAR(100),		 |
+		last_name VARCHAR(100),		 	 |
+		email VARCHAR(75),  		 	 |
+		password VARCHAR(255),		 	 |-------> creating fields in table 
+		location VARCHAR(100),			 |
+		department VARCHAR(100),	 	 |
+		is_admin TINYINT(1),		 	 |
+		register_date DATETIME,	   -------
+		PRIMARY KEY(id)			   ---------> use to set primary key
+		);
+
+Adding Foreign key in table:-
+	FOREIGN KEY(fieldname) REFERENCES anotherTableName(fieldname);
+	eg:- FOREIGN KEY(user_id) REFERENCES user(id);
+
+View Tables :-
+	SHOW TABLES;
+
+Deleting Table :-
+	DROP TABLE table_name;
+
+Inserting Data in Table :-
+	1) Insert only single row data
+		INSERT INTO table_name(coulumn_fields name separated by ',' )
+		VALUES (data in single quotes separated by ',');
+
+	2)Insert multiple rows at once
+		INSERT INTO table_name(coulumn_fields name separated by ',' )
+		VALUES (data in single quotes separated by ','),(Row_2 data),(Row_3 data),...;	
+	
+	** Coulumns can be in any order by remember you have to put data in same order in which order you have types coulumns name.
+
+
+
+	ex:- Using About user table 
+			INSERT INTO user(first_name,last_name,email,password,location,department,is_admin,register_date)
+			VALUE ('Himanshu','Sharma','himanshusharma2972@gmail.com','123456','Gurgaon','IT',1,now()); 
+
+				** now() is a function that automatically use system current data & Time. if you want to write manually simply	write like day/month/year. 
+
+Selecting Data From Table :-
+	
+	1. Selecting Specified Fields:-
+		SELECT field_name1,field_name2,.. FROM table_name;
+		ex:- SELECT first_name,last_name FROM user;
+	2. Selecting All Fields :- 
+		SELECT * FROM table_name;
+		ex:- SELECT * FROM user;
+	3. Selecting Data by Filtering:- 
+		A) Selecting using one condition
+			SELECT * FROM table_name WHERE fieldname='matched_word';
+			ex:- SELECT * FROM user WHERE location = 'gurgaon';
+		B) Selecting using AND opertion means multiple condition
+			SELECT * FROM table_name WHERE fieldname='matched_word' AND fieldname2='matched_word';
+			ex:- SELECT * FROM user WHERE location = 'gurgaon' AND department='IT';
+		C) We can select data using condition operator like '<','>','<=','>=','=';
+			ex:- SELECT * FROM user WHERE is_admin > 0;
+
+Adding Primary key in table :-
+  	
+	ALTER TABLE table_name ADD primary key (field_name);	
+
+Deleting Data From Table :- 
+
+	DELETE FROM table_name WHERE somecondition;
+	ex:- DELETE FROM user WHERE id=3;
+
+Updating Data From Table -
+	
+	UPDATE table_name SET fieldname='updated_data' WHERE KEY=VALUE;
+	ex:- UPDATE user SET email='abc@gmail.com' WHERE id=3;
+
+Adding new Field or coulumn into Table:-
+
+	ALTER TABLE table_name ADD fieldname datatype ;
+	eg:- ALTER TABLE user ADD age INT;
+
+Modifying field type :-
+	
+	ALTER TABLE table_name MODIFY fieldname datatype;
+	eg:- ALTER TABLE user MODIFY age varchar(3);
+
+Arranging rows in asending or desending order:-
+	
+	SELECT * FROM table_name ORDER BY fieldname DESC|ASC;  {DESC - Desending order , ASC - Asending order }
+	eg:- SELECT * FROM user ORDER BY  first_name ASC; 
+
+View data in Concatenating data fields :-
+		
+	SELECT CONCAT(fieldname1,' ',fieldname2) AS newFieldName, anotherFieldNameToView FROM tablename;
+	eg:- SElECT CONCATE(first_name,' ',last_name) AS name , age FROM user;
+		
+		output:- name 			 | age
+				himanshu sharma  | 20
+				suraj singh bisht| 21
+				arvind sharma 	 | 22
+
+View data in different ways:-
+	1)Suppose if we want to know how many different locations are there in database or how many age groups in database so
+	we can do this as follows-
+		eg:- SELECT DISTINCT location FROM user;
+	2) We can select range also 
+		 SELECT * FROM user WHERE age BETWEEN 20 AND 30;
+		 This will show you all the users comes between 20 and 30.
+
+	3) If we want to view data by mathing some keywords from data
+		a) If want to view data in which department starts with 'd' character so syntax is like 
+				SELECT * FROM user WHERE department LIKE 'd%';
+				it will list out all user whose department starts with d.
+				Similary we can do for more characters.
+			note:-  ** d% - if we add character before '%' sign then it will match starting words only 
+				 	   %d - if we add character after '%' sign then it will match ending words only
+				 	   %d%  - this we use when we want to match character in middle of word it may come at fist or last 		too
+	4) If we want to view data that not match  some keywords from data Then we can simply replace 'LIKE' with 'NOT LIKE'
+		eg:- SELECT * FROM user WHERE department NOT LIKE 'd%';
+
+IN() Function:-
+ 	It is very useful function for seleting or view data
+ 	It can be consider as a replacement of equal statement at the time of selecting statments
+
+ 	for eg:- SELECT * FROM table_name WHERE fieldname IN(value1,value2,..);
+ 			eg:- SELECT * FROM user WHERE department IN('design','sales');
+ 	The above statement is equal to something like 
+ 			SELECT * FORM user WHERE department='design' AND department='sales';
