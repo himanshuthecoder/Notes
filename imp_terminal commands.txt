@@ -1,10 +1,18 @@
-server command :- python -m SimpleHTTPServer 8000
+server command :- python3 -m http.server [8000:optional]
+============================================================================
+Command to off swap area:-
+	- swapoff -a
+	- Add # in front of  /etc/fstab file
 ============================================================================
 Command to create gifs:-
 	- check that imagemagic app is required
 	- convert -delay 50 -loop 0 *.png  animatedGIF.gif
 
 =============================================================================
+Command to install deb packages
+sudo dpkg -i /path/to/deb/file
+sudo apt-get install -f
+============================================================================
 Command to install tar.gz pakages:-
 	- First unzip the Tar file using 
 		tar -xvf packagename.taz.gz
